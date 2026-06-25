@@ -1,5 +1,4 @@
 const DEFAULT_TIMEOUT_MS = 30_000
-const API_BASE = (import.meta.env.VITE_BOM_API_URL as string | undefined) ?? ''
 
 export class ApiError extends Error {
   constructor(
@@ -22,7 +21,7 @@ async function request<T>(
 
   let res: Response
   try {
-    res = await fetch(API_BASE + path, { ...init, signal: controller.signal })
+    res = await fetch(path, { ...init, signal: controller.signal })
   } catch (err) {
     clearTimeout(timer)
     if ((err as Error).name === 'AbortError') {
