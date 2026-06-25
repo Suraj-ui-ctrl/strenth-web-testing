@@ -1,0 +1,48 @@
+# ── requirements for frontend_bridge.py (local dev only) ──────────────────────
+# PostgreSQL, Celery, Redis, Azure, Twilio are excluded —
+# frontend_bridge uses only SQLite via app_helpers.py.
+
+# ── Web framework ──────────────────────────────────────────────────────────────
+fastapi==0.115.6
+werkzeug>=3.0.0
+jinja2>=3.1.0
+uvicorn[standard]==0.32.1
+python-multipart==0.0.20
+
+# ── Database (SQLite only) ─────────────────────────────────────────────────────
+sqlalchemy==2.0.36
+alembic==1.14.0
+
+# ── Configuration ──────────────────────────────────────────────────────────────
+pydantic==2.10.4
+pydantic-settings==2.7.0
+python-dotenv==1.0.1
+
+# ── BOM parsing ────────────────────────────────────────────────────────────────
+pandas==2.2.3
+openpyxl==3.1.5
+xlrd==2.0.1
+requests==2.32.3
+beautifulsoup4==4.12.3
+lxml==5.3.0
+
+# ── LLM providers ──────────────────────────────────────────────────────────────
+anthropic==0.42.0
+openai==1.58.1
+google-generativeai>=0.8.3
+
+# ── LangChain chat agent ───────────────────────────────────────────────────────
+langchain>=0.3.0
+langchain-groq>=0.2.0
+langchain-openai>=0.2.0
+langchain-anthropic>=0.2.0
+langchain-google-genai>=2.0.0
+langgraph>=0.2.0
+
+# ── Gmail / Google API ────────────────────────────────────────────────────────
+google-auth>=2.25.0
+google-auth-oauthlib>=1.4.0
+google-api-python-client>=2.196.0
+
+# ── Logging ───────────────────────────────────────────────────────────────────
+structlog==24.4.0

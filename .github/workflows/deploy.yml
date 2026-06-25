@@ -1,0 +1,65 @@
+name: Build & Deploy → strenth-web
+
+on:
+  push:
+    branches: [master]
+  workflow_dispatch:
+
+env:
+  ACR_REGISTRY: bomtoolregistry.azurecr.io
+  IMAGE_NAME: strenth-web
+  CONTAINER_APP: strenth-web
+  RESOURCE_GROUP: bom-tool-rg
+  BOM_API_URL: https://bom-tool-api.jollyfield-91f54af9.centralindia.azurecontainerapps.io
+
+jobs:
+  build-and-deploy:
+    name: Build Docker image and deploy
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Azure Login
+        uses: azure/login@v2
+        with:
+          client-id: ${{ secrets.AZURE_CLIENT_ID }}
+          client-secret: ${{ secrets.AZURE_CLIENT_SECRET }}
+          tenant-id: ${{ secrets.AZURE_TENANT_ID }}
+          subscription-id: ${{ secrets.AZURE_SUBSCRIPTION_ID }}
+
+      - name: ACR Login
+        run: az acr login --name bomtoolregistry
+
+      - name: Build Docker image
+        run: |
+          docker build \
+            --build-arg VITE_BOM_API_URL="${{ env.BOM_API_URL }}" \
+            --build-arg VITE_GOOGLE_CLIENT_ID="${{ secrets.VITE_GOOGLE_CLIENT_ID }}" \
+            --build-arg VITE_ADMIN_EMAILS="${{ secrets.VITE_ADMIN_EMAILS }}" \
+            --build-arg VITE_ALLOWED_EMAIL_DOMAINS="strenth.ai" \
+            -t ${{ env.ACR_REGISTRY }}/${{ env.IMAGE_NAME }}:${{ github.sha }} \
+            -t ${{ env.ACR_REGISTRY }}/${{ env.IMAGE_NAME }}:latest \
+            .
+
+      - name: Push to ACR
+        run: |
+          docker push ${{ env.ACR_REGISTRY }}/${{ env.IMAGE_NAME }}:${{ github.sha }}
+          docker push ${{ env.ACR_REGISTRY }}/${{ env.IMAGE_NAME }}:latest
+
+      - name: Deploy to Azure Container App
+        run: |
+          az containerapp update \
+            --name ${{ env.CONTAINER_APP }} \
+            --resource-group ${{ env.RESOURCE_GROUP }} \
+            --image ${{ env.ACR_REGISTRY }}/${{ env.IMAGE_NAME }}:${{ github.sha }}
+
+      - name: Print live URL
+        run: |
+          FQDN=$(az containerapp show \
+            --name ${{ env.CONTAINER_APP }} \
+            --resource-group ${{ env.RESOURCE_GROUP }} \
+            --query properties.configuration.ingress.fqdn \
+            --output tsv)
+          echo "✅ Live: https://$FQDN"

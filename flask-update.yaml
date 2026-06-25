@@ -1,0 +1,17 @@
+properties:
+  template:
+    containers:
+    - image: bomtoolregistry.azurecr.io/bom-tool:latest
+      name: bom-tool-api
+      command:
+      - gunicorn
+      args:
+      - wsgi:app
+      - --workers
+      - "2"
+      - --threads
+      - "8"
+      - --timeout
+      - "180"
+      - --bind
+      - "0.0.0.0:8000"

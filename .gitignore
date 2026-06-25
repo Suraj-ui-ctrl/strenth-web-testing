@@ -1,0 +1,28 @@
+﻿node_modules/
+dist/
+
+# Environment files — never commit real values
+.env
+.env.local
+.env.*.local
+
+# Logs
+*.log
+logs/
+
+# OS
+.DS_Store
+Thumbs.db
+
+# Secrets & credentials — keep these local only
+credentials.json
+*.db
+azure-deploy.ps1
+
+# Python (backend files in repo root)
+__pycache__/
+*.pyc
+*.pyo
+.venv/
+venv/
+uploads/

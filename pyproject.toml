@@ -1,0 +1,42 @@
+[project]
+name = "bom-tool"
+version = "0.1.0"
+description = "BOM parsing, classification, sourcing, and pricing dashboard. Flask in production today; FastAPI is the long-term target (refactor plan Phase 3.1 / 3.5)."
+requires-python = ">=3.11"
+
+# Runtime deps remain in requirements.txt — both the Flask production path
+# (gunicorn wsgi:app) and the FastAPI parallel rewrite read from it. This
+# pyproject is here for ruff/pytest/mypy config and to centralize tooling.
+
+[tool.ruff]
+target-version = "py311"
+line-length = 100
+extend-exclude = [
+    "static",
+    "templates",
+    "uploads",
+    "migrations/versions",
+]
+
+[tool.ruff.lint]
+select = [
+    "E9",
+    "F",
+    "B",
+    "I",
+    "UP",
+]
+ignore = [
+    "E501",
+]
+
+[tool.pytest.ini_options]
+testpaths = ["tests"]
+python_files = ["test_*.py"]
+addopts = "-q --strict-markers"
+
+[tool.mypy]
+python_version = "3.11"
+ignore_missing_imports = true
+no_strict_optional = true
+follow_imports = "silent"

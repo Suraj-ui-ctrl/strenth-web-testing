@@ -1,0 +1,67 @@
+# ── Web framework ──────────────────────────────────────────────────────────────
+fastapi==0.115.6
+werkzeug>=3.0.0              # secure_filename used in app_helpers.py (was a Flask transitive dep)
+jinja2>=3.1.0                    # Jinja2Templates used in main.py
+uvicorn[standard]==0.32.1
+gunicorn==23.0.0
+python-multipart==0.0.20        # required for FastAPI file uploads
+
+# ── Database ────────────────────────────────────────────────────────────────────
+sqlalchemy[asyncio]==2.0.36
+asyncpg==0.30.0                  # async PostgreSQL driver (FastAPI lifespan)
+psycopg2-binary==2.9.10          # sync PostgreSQL driver (Celery + app_helpers)
+psycopg[binary]>=3.2.0           # sync PostgreSQL driver (app_helpers legacy callers)
+alembic==1.14.0
+
+# ── Async task queue ──────────────────────────────────────────────────────────
+celery[redis]==5.4.0
+redis==5.2.1
+
+# ── Azure Communication Services ─────────────────────────────────────────────
+azure-communication-email==1.0.0
+
+# ── WhatsApp Bot (Twilio) ─────────────────────────────────────────────────────
+twilio>=9.0.0
+
+# ── Configuration ─────────────────────────────────────────────────────────────
+pydantic==2.10.4
+pydantic-settings==2.7.0
+python-dotenv==1.0.1
+
+# ── BOM parsing ───────────────────────────────────────────────────────────────
+pandas==2.2.3
+openpyxl==3.1.5
+xlrd==2.0.1                      # .xls support
+requests==2.32.3
+beautifulsoup4==4.12.3
+lxml==5.3.0
+
+# ── LLM providers (install only what you use) ─────────────────────────────────
+anthropic==0.42.0                # Claude
+openai==1.58.1                   # GPT-4o / Hermes via OpenAI-compatible API
+google-generativeai>=0.8.3       # Gemini enrichment / fallback
+
+# ── LangChain chat agent (adapted from langchain-agent-poc) ───────────────────
+langchain>=0.3.0
+langchain-groq>=0.2.0            # Groq free LLM (primary chat agent backend)
+langchain-openai>=0.2.0          # Azure OpenAI + standard OpenAI support
+langchain-anthropic>=0.2.0       # Claude via LangChain (chat agent)
+langchain-google-genai>=2.0.0    # Gemini fallback for chat agent
+langgraph>=0.2.0                 # ReAct agent runtime
+
+# ── Gmail / Google API (RFQ reply checker) ────────────────────────────────────
+google-auth>=2.25.0
+google-auth-oauthlib>=1.4.0
+google-api-python-client>=2.196.0
+
+# ── Logging ────────────────────────────────────────────────────────────────────
+structlog==24.4.0
+
+# ── AWS S3 (optional — only needed if STORAGE_BACKEND=s3) ─────────────────────
+# boto3==1.35.90
+
+# ── Dev / test ─────────────────────────────────────────────────────────────────
+pytest==8.3.4
+pytest-asyncio==0.24.0
+httpx==0.28.1                    # async test client for FastAPI
+aiosqlite>=0.20.0               # async SQLite driver for test environments

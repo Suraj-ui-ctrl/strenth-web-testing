@@ -1,0 +1,21 @@
+import { BomRow } from '../types'
+
+export const BOM_ROWS: BomRow[] = [
+  /* ── Standard Parts (BOP) — bought off-the-shelf ── */
+  { id:  1, partNo: 'CC0402KRX5R8BB104', description: '100 nF 16 V X5R MLCC Capacitor 0402',           qty: 20, unit: 'pcs', category: 'Electrical', status: 'Approved', sourceFile: 'BOM_Assembly_v3.xlsx', hsnCode: '85322400', isDuplicate: false, classification: 'BOP' },
+  { id:  2, partNo: 'GRM188R61E106KA73D', description: '10 µF 25 V X5R MLCC Capacitor 0603',           qty:  8, unit: 'pcs', category: 'Electrical', status: 'Approved', sourceFile: 'BOM_Assembly_v3.xlsx', hsnCode: '85322400', isDuplicate: false, classification: 'BOP' },
+  { id:  3, partNo: 'RC0402FR-0710KL',   description: '10 kΩ 1% 63 mW Thick Film Resistor 0402',      qty: 30, unit: 'pcs', category: 'Electrical', status: 'Approved', sourceFile: 'BOM_Assembly_v3.xlsx', hsnCode: '85331090', isDuplicate: false, classification: 'BOP' },
+  { id:  4, partNo: 'RC0402FR-071KL',    description: '1 kΩ 1% 63 mW Thick Film Resistor 0402',       qty: 20, unit: 'pcs', category: 'Electrical', status: 'Approved', sourceFile: 'BOM_Assembly_v3.xlsx', hsnCode: '85331090', isDuplicate: false, classification: 'BOP' },
+  { id:  5, partNo: 'STM32F411CEU6',     description: 'ARM Cortex-M4 MCU 512 KB Flash UFQFPN48',      qty:  1, unit: 'pcs', category: 'Electrical', status: 'Approved', sourceFile: 'BOM_Assembly_v3.xlsx', hsnCode: '85423190', isDuplicate: false, classification: 'BOP' },
+  { id:  6, partNo: 'ESP32-WROOM-32E',   description: 'Wi-Fi + Bluetooth 4.2 SoC Module 4 MB flash',  qty:  1, unit: 'pcs', category: 'Electrical', status: 'Approved', sourceFile: 'BOM_Assembly_v3.xlsx', hsnCode: '85177090', isDuplicate: false, classification: 'BOP' },
+  { id:  7, partNo: 'XC6220A331MR-G',    description: '3.3 V 700 mA LDO Regulator SOT23-5',           qty:  2, unit: 'pcs', category: 'Electrical', status: 'Approved', sourceFile: 'BOM_Assembly_v3.xlsx', hsnCode: '85423190', isDuplicate: false, classification: 'BOP' },
+  { id:  8, partNo: 'TPS54360BDDAR',     description: '60 V 3.5 A Step-Down DC-DC Converter SO-8',    qty:  1, unit: 'pcs', category: 'Electrical', status: 'Approved', sourceFile: 'BOM_Assembly_v3.xlsx', hsnCode: '85423190', isDuplicate: false, classification: 'BOP' },
+  { id:  9, partNo: 'SI2302ADS-T1-E3',   description: 'N-Channel 20 V 3.1 A MOSFET SOT-23',           qty:  4, unit: 'pcs', category: 'Electrical', status: 'Approved', sourceFile: 'BOM_Assembly_v3.xlsx', hsnCode: '85414010', isDuplicate: false, classification: 'BOP' },
+  { id: 10, partNo: 'CSTCE16M0V53-R0',  description: '16 MHz 3-Terminal Ceramic Resonator SMD',       qty:  1, unit: 'pcs', category: 'Electrical', status: 'Approved', sourceFile: 'BOM_Assembly_v3.xlsx', hsnCode: '85413000', isDuplicate: false, classification: 'BOP' },
+  { id: 11, partNo: 'PRTR5V0U2X',        description: 'Dual Rail-to-Rail ESD Protection Diode SOT363', qty: 3, unit: 'pcs', category: 'Electrical', status: 'Approved', sourceFile: 'BOM_Assembly_v3.xlsx', hsnCode: '85414090', isDuplicate: false, classification: 'BOP' },
+  { id: 12, partNo: 'KXTJ3-1057',        description: '3-Axis Accelerometer ±2/4/8/16g I²C LGA-12',   qty:  1, unit: 'pcs', category: 'Electrical', status: 'Pending',  sourceFile: 'BOM_Assembly_v3.xlsx', hsnCode: '90141000', isDuplicate: false, classification: 'BOP' },
+  /* ── Custom Design Parts (CDP) — require custom fabrication ── */
+  { id: 13, partNo: 'PCB-MAIN-REV4',     description: 'Main PCB Board Rev 4 — FR4 1.6 mm 4-layer',    qty:  1, unit: 'pcs', category: 'Electrical', status: 'Approved', sourceFile: 'BOM_Assembly_v3.xlsx', hsnCode: '85340000', isDuplicate: false, classification: 'CDP' },
+  { id: 14, partNo: 'ENC-TOP-AL6061',    description: 'Enclosure Top Panel — Aluminium 6061 CNC',      qty:  1, unit: 'pcs', category: 'Mechanical', status: 'Approved', sourceFile: 'BOM_Assembly_v3.xlsx', hsnCode: '76169990', isDuplicate: false, classification: 'CDP' },
+  { id: 15, partNo: 'CBL-24V-500-3P',    description: 'DC Power Cable 24 V 0.5 m 3-Pin Custom',       qty:  1, unit: 'pcs', category: 'Electrical', status: 'Approved', sourceFile: 'BOM_Assembly_v3.xlsx', hsnCode: '85444299', isDuplicate: false, classification: 'CDP' },
+]
