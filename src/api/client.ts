@@ -32,8 +32,9 @@ async function request<T>(
   clearTimeout(timer)
 
   if (!res.ok) {
+    const raw = await res.text()
     let body: unknown
-    try { body = await res.json() } catch { body = await res.text() }
+    try { body = JSON.parse(raw) } catch { body = raw }
     throw new ApiError(res.status, body, `HTTP ${res.status} from ${path}`)
   }
 
